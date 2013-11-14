@@ -221,7 +221,7 @@ module Prawn
       # returns a nested array of object IDs for all pages in this object store.
       #
       def get_page_objects(obj)
-        if obj.data[:Type] == :Page
+        if obj.present? && obj.data[:Type] == :Page
           obj.identifier
         elsif obj.data[:Type] == :Pages
           obj.data[:Kids].map { |kid| get_page_objects(kid) }
