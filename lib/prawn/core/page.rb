@@ -26,7 +26,7 @@ module Prawn
                                            :bottom  => 36  }
         @stack = Prawn::GraphicStateStack.new(options[:graphic_state])
         if options[:object_id]
-          init_from_object(options)
+          init_from_object(options, @document.pages_resources)
         else
           init_new_page(options)
         end
@@ -156,12 +156,16 @@ module Prawn
 
       private
 
-      def init_from_object(options)
+      def init_from_object(options, pages_resources)
         @dictionary = options[:object_id].to_i
         dictionary.data[:Parent] = document.state.store.pages if options[:page_template]
 
         unless dictionary.data[:Contents].is_a?(Array) # content only on leafs
           @content    = dictionary.data[:Contents].identifier
+        end
+        
+        if (dictionnary[:Resources].empty? || dictionnary[:Resources].nil?)
+          dictionnary[:Resources] = pages_resources
         end
 
         @stamp_stream      = nil

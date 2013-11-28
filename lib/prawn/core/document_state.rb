@@ -7,6 +7,7 @@ module Prawn
         if options[:template]
           @store = Prawn::Core::ObjectStore.new(:template => options[:template])
           @store.info.data.merge!(options[:info]) if options[:info]
+          self.pages_resources = @store.pages_resource
         else
           @store = Prawn::Core::ObjectStore.new(:info => options[:info])
         end
@@ -26,11 +27,11 @@ module Prawn
 
       attr_accessor :store, :version, :pages, :page, :trailer, :compress,
         :encrypt, :encryption_key, :optimize_objects, :skip_encoding,
-        :before_render_callbacks, :on_page_create_callback
+        :before_render_callbacks, :on_page_create_callback, :pages_resources
 
       def populate_pages_from_store(document)
         return 0 if @store.page_count <= 0 || @pages.size > 0
-
+        document.pages_resources = self.pages_resources
         count = (1..@store.page_count)
         @pages = count.map do |index|
           orig_dict_id = @store.object_id_for_page(index)

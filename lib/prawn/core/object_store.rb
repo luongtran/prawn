@@ -46,6 +46,10 @@ module Prawn
       def pages
         root.data[:Pages]
       end
+      
+      def pages_resource
+        pages.data[:Resources]
+      end
 
       def page_count
         pages.data[:Count]

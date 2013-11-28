@@ -216,7 +216,7 @@ module Prawn
       end
     end
 
-    attr_accessor :margin_box
+    attr_accessor :margin_box, :pages_resources
     attr_reader   :margins, :y
     attr_writer   :font_size
     attr_accessor :page_number
