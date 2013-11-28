@@ -333,7 +333,8 @@ module Prawn
     end
 
     def identifier_for(subset) #:nodoc:
-      "#{@identifier}.#{subset}"
+      #"#{@identifier}.#{subset}"
+      @identifier
     end
 
     def inspect #:nodoc:
