@@ -164,8 +164,8 @@ module Prawn
           @content    = dictionary.data[:Contents].identifier
         end
         
-        if (dictionnary[:Resources].empty? || dictionnary[:Resources].nil?)
-          dictionnary[:Resources] = pages_resources
+        if (dictionary.data[:Resources].empty? || dictionary.data[:Resources].nil?)
+          dictionary.data[:Resources] = pages_resources
         end
 
         @stamp_stream      = nil
