@@ -164,7 +164,7 @@ module Prawn
           @content    = dictionary.data[:Contents].identifier
         end
         
-        if (dictionary.data[:Resources].empty? || dictionary.data[:Resources].nil?)
+        if (dictionary.data[:Resources].nil?)
           dictionary.data[:Resources] = pages_resources
         end
 
