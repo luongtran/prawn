@@ -48,7 +48,11 @@ module Prawn
       end
       
       def pages_resource
-        pages.data[:Resources]
+        resources = pages.data[:Resources]
+        if resources
+          pages.data.tap { |dt| dt.delete(:Resources) }
+        end
+        resources
       end
 
       def page_count
