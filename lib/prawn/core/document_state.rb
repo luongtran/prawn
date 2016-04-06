@@ -52,6 +52,7 @@ module Prawn
         pages.insert(page_number, page)
         store.pages.data[:Kids].insert(page_number, page.dictionary)
         store.pages.data[:Count] += 1
+        store.pages.data[:Kids] = store.pages.data[:Kids].compact
       end
 
       def on_page_create_action(doc)
